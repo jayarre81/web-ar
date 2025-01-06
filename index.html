@@ -1,23 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Web AR App</title>
-  
-  <!-- Link to the manifest -->
-  <link rel="manifest" href="manifest.json">
-  
-  <!-- Theme color -->
-  <meta name="theme-color" content="#000000">
+  <title>AR.js Marker-Based AR</title>
+  <!-- A-Frame and AR.js Scripts -->
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.min.js"></script>
 </head>
-
-<body>
-  <!-- Register the Service Worker -->
-  <script>
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker
-        .register("service-worker.js")
-        .then(() => console.log("Service Worker Registered"))
-        .catch((error) => console.log("Service Worker Registration Failed:", error));
-    }
-  </script>
+<body style="margin: 0; overflow: hidden;">
+  <!-- A-Frame Scene -->
+  <a-scene embedded arjs>
+    <!-- AR Marker -->
+    <a-marker 
+      preset="custom" 
+      type="pattern" 
+      url="https://culiarch.com/web-ar/marker.patt" 
+      crossorigin="anonymous">
+      <!-- 3D Model -->
+      <a-entity 
+        gltf-model="https://culiarch.com/web-ar/models/doki_test0.4.gltf" 
+        crossorigin="anonymous" 
+        scale="3 3 3" 
+        position="0 0 0">
+      </a-entity>
+    </a-marker>
+    <!-- AR Camera -->
+    <a-entity camera></a-entity>
+  </a-scene>
 </body>
+</html>
